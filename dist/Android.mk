@@ -134,6 +134,11 @@ LOCAL_LDLIBS += -ldl
 endif
 endif
 
+ifeq ($(HOST_OS),darwin)
+LOCAL_LDFLAGS += -Wl,-U,_sqlite3_androidopt_open -Wl,-U,_sqlite3_androidopt_handle_pragma
+LOCAL_LDFLAGS += -Wl,-U,_sqlite3_androidopt_close -Wl,-U,_sqlite3_androidopt_init
+endif
+
 LOCAL_MODULE := sqlite3
 
 include $(BUILD_HOST_EXECUTABLE)
